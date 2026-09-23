@@ -1,10 +1,10 @@
 # QuantumNoiseLab
 
-**Reproducible quantum-noise experiments, from a physical model to an inspectable result.**
+**Simulate qubit relaxation, dephasing and driven dynamics.**
 
-QuantumNoiseLab is an original experiment and reporting application by nazeeh111. It uses [QuTiP](https://qutip.org/) as its numerical engine. Run five driven-qubit and decoherence experiments, compare analytical limits, inspect finite-shot uncertainty, and explore the computed results in an offline browser dashboard.
+QuantumNoiseLab uses [QuTiP](https://qutip.org/) to solve two-level quantum models and generate reports. Run five driven-qubit and decoherence experiments, compare analytical limits, inspect finite-shot uncertainty, and explore the computed results in an offline browser dashboard.
 
-This is a classical simulation of a quantum system. It does not access quantum hardware, require an API key, or claim quantum advantage.
+The calculations run on a classical CPU; the results are simulated, not measured on quantum hardware.
 
 ![Offline quantum experiment dashboard](docs/dashboard-desktop.png)
 
@@ -70,8 +70,8 @@ See [the model and derivations](docs/physics.md), [architecture](docs/architectu
 
 This model assumes a two-level system in a rotating frame and constant drive during Rabi experiments. Dissipation is time-independent and Markovian. Echo pulses and preparation/readout are ideal and instantaneous. Quasistatic detuning is constant within a trajectory. The finite ensemble is an approximation to a noise distribution; shot intervals do **not** include uncertainty from ensemble size, unknown model parameters, pulse calibration, or omitted physics.
 
-There is no finite-temperature excitation, multilevel leakage, time-correlated noise process, hardware calibration, pulse optimization, or claim of a new solver. The original work is the experiment design, independent checks, reproducible export pipeline, and offline exploration interface.
+The model excludes finite-temperature excitation, multilevel leakage and time-correlated noise. It does not perform hardware calibration or pulse optimization.
 
 ## License
 
-Original project code is MIT © 2026 nazeeh111. QuTiP and other dependencies retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This project was developed locally with Git and then published; publication timestamps are not a record of every local development step. No development dates are backdated.
+Original project code is MIT © 2026 nazeeh111. QuTiP and other dependencies retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Developed locally with Git before publication.
