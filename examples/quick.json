@@ -1,0 +1,10 @@
+{
+  "experiments": [
+    {"kind": "relaxation", "points": 21, "duration_us": 40},
+    {"kind": "dephasing", "points": 21, "duration_us": 40},
+    {"kind": "rabi", "points": 41, "duration_us": 10, "t1_us": null, "tphi_us": null},
+    {"kind": "ramsey", "points": 21, "ensemble": 5, "detuning_sigma_mhz": 0.02},
+    {"kind": "echo", "points": 21, "ensemble": 5, "detuning_sigma_mhz": 0.02}
+  ],
+  "sweep": {"detuning_mhz": [-0.1, 0.1, 5], "drive_mhz": [0, 0.2, 5], "duration_us": 5}
+}
