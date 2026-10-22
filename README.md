@@ -6,6 +6,8 @@ QuantumNoiseLab uses [QuTiP](https://qutip.org/) to solve two-level quantum mode
 
 The calculations run on a classical CPU; the results are simulated, not measured on quantum hardware.
 
+[Explore the interactive example dashboard](https://nazeeh111.github.io/QuantumNoiseLab/) to switch among five precomputed experiments, inspect their numerical data, and explore the drive–detuning sweep. The hosted page displays a checked-in simulation report; it does not run QuTiP in your browser.
+
 ![Offline quantum experiment dashboard](docs/dashboard-desktop.png)
 
 [View the computed drive–detuning sweep](docs/demo/sweep.png) · [Mobile layout](docs/dashboard-mobile.png)
