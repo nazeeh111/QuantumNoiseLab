@@ -42,11 +42,18 @@ try {
   await evaluate('document.querySelector("#file").files = (()=>{const d=new DataTransfer();d.items.add(new File(["{}"],"bad.json",{type:"application/json"}));return d.files})();document.querySelector("#file").dispatchEvent(new Event("change"))');
   await new Promise(r=>setTimeout(r,100));
   assert.equal(await evaluate('document.querySelector("#error").hidden'),false);
+  const retainedTitle=await evaluate('document.querySelector("#experiment-title").textContent');
+  for (const kind of ["constructor", "toString", "__proto__", "unknown", ["relaxation"]]) {
+    await evaluate(`window.invalidKindReport=structuredClone(window.QUANTUM_NOISE_RESULTS);window.invalidKindReport.experiments[0].config.kind=${JSON.stringify(kind)};document.querySelector("#file").files=(()=>{const d=new DataTransfer();d.items.add(new File([JSON.stringify(window.invalidKindReport)],"invalid-kind.json",{type:"application/json"}));return d.files})();document.querySelector("#file").dispatchEvent(new Event("change"))`);
+    await new Promise(r=>setTimeout(r,100));
+    assert.equal(await evaluate('document.querySelector("#error").hidden'),false,`kind ${JSON.stringify(kind)} must be refused`);
+    assert.equal(await evaluate('document.querySelector("#experiment-title").textContent'),retainedTitle,"refused import must preserve the current experiment");
+  }
   await evaluate('window.testReport=structuredClone(window.QUANTUM_NOISE_RESULTS);window.testReport.provenance.runtime_seconds=123.45;document.querySelector("#file").files=(()=>{const d=new DataTransfer();d.items.add(new File([JSON.stringify(window.testReport)],"custom.json",{type:"application/json"}));return d.files})();document.querySelector("#file").dispatchEvent(new Event("change"))');
   await new Promise(r=>setTimeout(r,100));
   assert.equal(await evaluate('document.querySelector("#error").hidden'),true);
   assert.equal(await evaluate('(async()=>{const d=await(await fetch(document.querySelector("a[download=\\"results.json\\"]").href)).json();return d.provenance.runtime_seconds;})()'),123.45);
   assert.equal(await evaluate('document.querySelector("a[data-bundled]").hidden'),true);
   assert.equal(errors.length,0,JSON.stringify(errors));
-  console.log("PASS: five experiments, overlays, Bloch selection, sample inspection, mobile width, invalid/valid JSON import, current-run download, no browser exceptions");
+  console.log("PASS: five experiments, overlays, Bloch selection, sample inspection, mobile width, invalid/valid JSON and inherited/non-string kind import, current-run download, no browser exceptions");
 } finally {ws.close();}

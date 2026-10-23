@@ -38,7 +38,7 @@ function validate(r) {
   if (!r || r.schema_version !== 1 || r.simulation_only !== true || !r.provenance || !Array.isArray(r.experiments) || r.experiments.length < 1 || r.experiments.length > 30) throw Error("Expected a QuantumNoiseLab schema version 1 simulation report.");
   for (const e of r.experiments) {
     const n = e.time_us?.length;
-    if (!e.config || !descriptions[e.config.kind] || !e.diagnostics || !Number.isInteger(n) || n < 2 || n > 10001 || !finiteArray(e.time_us, n) || !finiteArray(e.signal, n) || !e.bloch || !["x", "y", "z"].every(k => finiteArray(e.bloch[k], n)) || (e.reference !== null && !finiteArray(e.reference, n))) throw Error("Invalid experiment arrays or configuration.");
+    if (!e.config || typeof e.config.kind !== "string" || !Object.hasOwn(descriptions, e.config.kind) || !e.diagnostics || !Number.isInteger(n) || n < 2 || n > 10001 || !finiteArray(e.time_us, n) || !finiteArray(e.signal, n) || !e.bloch || !["x", "y", "z"].every(k => finiteArray(e.bloch[k], n)) || (e.reference !== null && !finiteArray(e.reference, n))) throw Error("Invalid experiment arrays or configuration.");
     if (e.time_us[0] !== 0 || e.time_us.some((t, i) => i && t <= e.time_us[i-1])) throw Error("Time samples must increase from zero.");
     if (e.measurement && !["value", "low95", "high95"].every(k => finiteArray(e.measurement[k], n))) throw Error("Invalid measurement arrays.");
   }
