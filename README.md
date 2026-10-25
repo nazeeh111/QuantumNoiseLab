@@ -8,9 +8,9 @@ The calculations run on a classical CPU; the results are simulated, not measured
 
 [Explore the interactive example dashboard](https://nazeeh111.github.io/QuantumNoiseLab/) to switch among five precomputed experiments, inspect their numerical data, and explore the drive–detuning sweep. The hosted page displays a checked-in simulation report; it does not run QuTiP in your browser.
 
-![Offline quantum experiment dashboard](docs/dashboard-desktop.png)
+![Offline quantum experiment dashboard](docs/dashboard-dark-desktop.png)
 
-[View the computed drive–detuning sweep](docs/demo/sweep.png) · [Mobile layout](docs/dashboard-mobile.png)
+[View the computed drive–detuning sweep](docs/demo/sweep.png) · [Mobile layout](docs/dashboard-dark-mobile.png)
 
 ## Run it
 
