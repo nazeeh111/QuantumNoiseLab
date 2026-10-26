@@ -76,4 +76,4 @@ The model excludes finite-temperature excitation, multilevel leakage and time-co
 
 ## License
 
-Original project code is MIT © 2026 nazeeh111. QuTiP and other dependencies retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Developed locally with Git before publication.
+Original project code is MIT © 2026 nazeeh111. QuTiP and other dependencies retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
